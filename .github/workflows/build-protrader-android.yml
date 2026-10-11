@@ -37,6 +37,30 @@ jobs:
       - name: Install JavaScript dependencies
         run: npm install --no-audit --no-fund
 
+      - name: Fix Android Browser dependency
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          import re
+
+          path = Path("node_modules/@capgo/capacitor-social-login/android/build.gradle")
+          code = path.read_text()
+
+          pattern = r"implementation\s+['\"]com\.google\.androidbrowserhelper:androidbrowserhelper:([^'\"]+)['\"]"
+          replacement = r"implementation('com.google.androidbrowserhelper:androidbrowserhelper:\1') { exclude group: 'androidx.browser', module: 'browser' }"
+
+          code, count = re.subn(pattern, replacement, code)
+          if count != 1:
+              raise SystemExit("Browser dependency patch failed")
+
+          code = code.replace(
+              "    testImplementation ",
+              "    implementation 'androidx.browser:browser:1.9.0'\n    testImplementation ",
+              1
+          )
+          path.write_text(code)
+          PY
+
       - name: Build web files and create Android project
         run: |
           npm run build
