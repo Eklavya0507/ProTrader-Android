@@ -53,11 +53,8 @@ for (const file of fs.readdirSync(output).filter(x => x.endsWith('.html'))) {
   fs.writeFileSync(filePath,html);
 }
 
-// The Android app launches the existing online login, not the marketing landing page.
-fs.writeFileSync(path.join(output,'index.html'), `<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ProTrader — Opening</title></head>
-<body style="background:#080b0c;color:white;font-family:system-ui;padding:30px">
-<p>Opening ProTrader…</p><a style="color:#91bbff" href="login.html">Open login</a>
-<script>try { location.replace(sessionStorage.getItem('protrade_auth_token') || sessionStorage.getItem('protrade_refresh_token') ? 'dashboard.html' : 'login.html'); } catch (_) { location.replace('login.html'); }</script>
-</body></html>`);
-console.log(`Android web assets prepared: ${fs.readdirSync(output).length} entries in www/`);
+// Keep the original public website landing page as the APK home screen.
+// The existing navigation handles Sign In / Create Account / Dashboard.
+// IMPORTANT: do not overwrite www/index.html here; doing so caused the APK to
+// start on Login instead of showing the website-style home page.
+ console.log('ProTrader landing page preserved as Android start screen.');

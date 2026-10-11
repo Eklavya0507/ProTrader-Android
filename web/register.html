@@ -376,7 +376,7 @@
               body.code === "VERIFICATION_EMAIL_FAILED"
             ) {
               if (window.ProTraderMobile?.isNative && window.ProTraderMobileAuth) {
-                window.ProTraderMobileAuth.showVerify({email:body.email || email});
+                window.ProTraderMobileAuth.showVerify({email:body.email || email, deliveryFailed:body.code === 'VERIFICATION_EMAIL_FAILED'});
               } else {
                 window.location.replace(`verify-email.html?status=resend&email=${encodeURIComponent(body.email || email)}`);
               }

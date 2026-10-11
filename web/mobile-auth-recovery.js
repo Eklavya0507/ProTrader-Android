@@ -95,13 +95,17 @@
       notice(data.message+' Follow the link in Chrome, then return to ProTrader.'); startPoll();
     }catch(error){notice(error.message);}finally{setBusy(false);}
   };
-  function showVerify({email,alreadySent=false}={}){
+  function showVerify({email,alreadySent=false,deliveryFailed=false}={}){
     renderPanel();stop();mode='verify';activeEmail=safeEmail(email);
     flowId=getFlowId(VERIFY,activeEmail);emailInput.value=activeEmail;
     title.textContent='Verify your email';actionLabel.textContent='Resend verification email';
-    notice(alreadySent ? 'Verification email requested. Check your inbox and open its link in Chrome.' : 'Your email is not verified. Tap below to request a new verification email.');
+    notice(deliveryFailed
+      ? 'Your account was created, but the mail service failed to send the verification link. Do not register again. Try Resend once; if it fails, the administrator must check Brevo / Render email settings.'
+      : alreadySent
+        ? 'Account created. Check your inbox/spam for the verification email and open its link in Chrome.'
+        : 'This account needs email verification. Tap Resend verification email below (this is not sent automatically).');
     panel.hidden=false;
-    if(alreadySent)startPoll();else resendVerification();
+    if(alreadySent)startPoll();
   }
   function showReset(prefill){
     renderPanel();stop();mode='reset';activeEmail=''; flowId='';

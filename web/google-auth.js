@@ -401,7 +401,7 @@
       button.setAttribute('aria-label','Continue with Google using native Android sign-in');
       button.style.cssText = 'min-height:48px;width:100%;color:#101827;background:#fff;border:1px solid #bac7d5;border-radius:22px;font-weight:800;font-size:15px;cursor:pointer';
       container.appendChild(button);
-      if(status) status.textContent = 'Requires Android Google Sign-In setup for this APK.';
+      if(status) status.textContent = 'Secure Google sign-in • Android authorization must match the APK signing certificate.';
       button.addEventListener('click', async () => {
         if(typeof window.ProTraderNativeGoogleSignIn !== 'function') {
           showError('Native Google Sign-In is not installed in this build. Use email/password or reset your password.');
