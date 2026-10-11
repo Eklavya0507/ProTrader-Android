@@ -1,0 +1,14 @@
+{
+  "appId": "com.protrader.journal",
+  "appName": "ProTrader",
+  "webDir": "www",
+  "server": {
+    "hostname": "localhost",
+    "androidScheme": "https",
+    "cleartext": false
+  },
+  "android": {
+    "allowMixedContent": false,
+    "backgroundColor": "#080b0c"
+  }
+}

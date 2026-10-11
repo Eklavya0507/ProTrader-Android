@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#05070a" />
+  <meta name="description" content="ProTrade Analytics — cinematic trading journal connected to a secure production backend." />
+  <title>ProTrade Analytics — Signal. Structure. Conviction.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="protrader-v5.css" />
+</head>
+<body>
+  <canvas id="ambientCanvas" aria-hidden="true"></canvas>
+  <div class="grain" aria-hidden="true"></div>
+  <div class="back-glow glow-a" aria-hidden="true"></div>
+  <div class="back-glow glow-b" aria-hidden="true"></div>
+
+  <header class="topbar" data-topbar>
+    <a class="brand" href="#top" aria-label="ProTrade home">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span class="brand-text">ProTrade</span>
+    </a>
+
+    <nav class="nav" aria-label="Primary">
+      <a href="#platform">Platform</a>
+      <a href="#approach">Approach</a>
+      <a href="#engine">Engine</a>
+      <a href="#knowledge">Knowledge</a>
+      <a href="#cta">Start</a>
+    </nav>
+
+    <div class="actions">
+      <a class="nav-link" data-auth-login-link href="login.html">Sign In</a>
+      <a class="btn btn-gold btn-small" data-primary-app-link href="login.html?next=dashboard.html"><span data-primary-label>Start Trading</span> <span>↗</span></a>
+      <span class="auth-chip" data-auth-chip hidden><span class="auth-dot"></span><span data-auth-user>Signed in</span></span>
+      <button type="button" class="menu-btn" data-menu-toggle aria-label="Toggle menu">
+        <span></span><span></span>
+      </button>
+    </div>
+
+    <div class="mobile-menu" data-mobile-menu>
+      <a href="#platform">Platform</a>
+      <a href="#approach">Approach</a>
+      <a href="#engine">Engine</a>
+      <a href="#knowledge">Knowledge</a>
+      <a data-auth-login-link href="login.html">Sign In</a>
+      <a data-auth-register-link href="register.html">Create Account</a>
+      <a data-primary-app-link href="login.html?next=dashboard.html"><span data-primary-label>Start Trading</span></a>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="hero-copy reveal">
+        <p class="eyebrow"><span></span> Built for focused traders</p>
+        <h1>Signal. <em>Structure.</em> Conviction.</h1>
+        <p class="lead">
+          A cinematic ProTrade workspace — immersive 3D motion, secure account access
+          and a live-feeling workspace for disciplined decision making.
+        </p>
+        <p class="body-copy">
+          Scan markets, review setups, manage risk and compound with purpose.
+          Precision is not noise reduction alone — it is a system.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn-gold" data-primary-app-link href="login.html?next=dashboard.html"><span data-primary-label>Open Workspace</span> <span>→</span></a>
+          <a class="btn btn-outline" href="#engine">See Intelligence Core <span>↘</span></a>
+        </div>
+
+        <div class="hero-meta">
+          <div><b>Ultra-Fast</b><small>Responsive market workflow</small></div>
+          <div><b>Adaptive</b><small>Signal-first decision support</small></div>
+          <div class="backend-meta"><b data-backend-status>Connecting…</b><small data-backend-detail>Checking secure backend</small></div>
+        </div>
+      </div>
+
+      <div class="hero-stage reveal" data-hero-stage>
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="hero-floor" aria-hidden="true"></div>
+        <div class="hero-rings" aria-hidden="true">
+          <span></span><span></span><span></span>
+        </div>
+
+        <div class="hero-chart-card chart-top-left" data-depth="0.28">
+          <small>NIFTY 50</small>
+          <strong>24,352.10</strong>
+          <em class="up">+0.68%</em>
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+            <path class="grid-path" d="M0 18H200M0 40H200M0 60H200" />
+            <path class="line-path green" d="M0 58 18 50 35 52 51 38 70 45 92 25 110 31 131 16 150 25 168 8 200 13" />
+          </svg>
+        </div>
+
+        <div class="hero-chart-card chart-mid-left" data-depth="0.17">
+          <small>OPEN P&L</small>
+          <strong>+12,845.60</strong>
+          <em class="up">+3.21%</em>
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+            <path class="grid-path" d="M0 18H200M0 40H200M0 60H200" />
+            <path class="line-path teal" d="M0 62 21 63 39 56 58 41 74 44 95 27 116 32 140 16 165 19 200 6" />
+          </svg>
+        </div>
+
+        <div class="hero-chart-card chart-top-right" data-depth="0.31">
+          <small>BANKNIFTY</small>
+          <strong>51,234.75</strong>
+          <em class="down">-0.28%</em>
+          <svg viewBox="0 0 200 70" preserveAspectRatio="none">
+            <path class="grid-path" d="M0 18H200M0 40H200M0 60H200" />
+            <path class="line-path red" d="M0 14 18 19 39 15 61 28 82 23 101 33 125 30 146 42 168 39 200 53" />
+          </svg>
+        </div>
+
+        <div class="hero-score-card chart-mid-right" data-depth="0.22">
+          <small>WIN RATE</small>
+          <strong data-count="72">0%</strong>
+          <div class="score-progress"><span></span></div>
+          <p>Trade with process. Not impulse.</p>
+        </div>
+
+        <div class="command-desk" data-depth="0.05" aria-hidden="true">
+          <div class="desk-top"></div>
+          <div class="desk-front"></div>
+          <div class="keyboard"></div>
+          <div class="mouse"></div>
+        </div>
+
+        <div class="left-monitor monitor" data-depth="0.09">
+          <div class="monitor-frame">
+            <div class="monitor-screen info-screen">
+              <span class="screen-label">MARKET HEATMAP</span>
+              <div class="heat-grid">
+                <i class="g"></i><i class="g"></i><i class="r"></i><i class="g"></i>
+                <i class="r"></i><i class="g"></i><i class="g"></i><i class="r"></i>
+                <i class="g"></i><i class="g"></i><i class="r"></i><i class="g"></i>
+              </div>
+            </div>
+          </div>
+          <span class="monitor-stand"></span>
+        </div>
+
+        <div class="center-monitor monitor" data-depth="0.11">
+          <div class="monitor-frame">
+            <div class="monitor-screen video-screen">
+              <video autoplay muted loop playsinline>
+                <source src="assets/market-motion.mp4" type="video/mp4" />
+              </video>
+              <div class="video-overlay">
+                <span>PROTRADE COMMAND FEED</span>
+                <b>Realtime motion. Structured focus.</b>
+              </div>
+            </div>
+          </div>
+          <span class="monitor-stand"></span>
+        </div>
+
+        <div class="right-monitor monitor" data-depth="0.09">
+          <div class="monitor-frame">
+            <div class="monitor-screen bars-screen">
+              <span class="screen-label">ORDER FLOW</span>
+              <div class="bars">
+                <i style="--h:45%"></i><i style="--h:70%"></i><i style="--h:56%"></i>
+                <i style="--h:82%"></i><i style="--h:61%"></i><i style="--h:94%"></i>
+                <i style="--h:52%"></i><i style="--h:68%"></i><i style="--h:77%"></i>
+              </div>
+            </div>
+          </div>
+          <span class="monitor-stand"></span>
+        </div>
+
+        <div class="reactor" data-depth="0.23">
+          <div class="reactor-base">
+            <span class="base-ring r1"></span>
+            <span class="base-ring r2"></span>
+            <span class="base-ring r3"></span>
+          </div>
+
+          <div class="core-chamber">
+            <div class="core-face front"></div>
+            <div class="core-face back"></div>
+            <div class="core-face left"></div>
+            <div class="core-face right"></div>
+            <div class="core-face top"></div>
+            <div class="core-face bottom"></div>
+
+            <div class="brain-shell">
+              <svg viewBox="0 0 240 180" fill="none" aria-label="AI brain">
+                <path d="M120 25c-18-17-48-7-48 17-26-3-37 31-18 47-18 17-8 48 18 49 3 26 36 34 49 14 15 20 48 12 51-14 27-2 38-34 19-50 19-16 8-50-18-47 0-24-30-34-48-17Z" stroke="currentColor" stroke-width="5"/>
+                <path d="M120 25v126M72 42c26 6 35 21 29 43M168 42c-26 6-35 21-29 43M66 89c23-6 36 3 41 23M174 89c-23-6-36 3-41 23M73 137c18-20 34-21 47-9M167 137c-18-20-34-21-47-9" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+              </svg>
+              <span class="brain-core"></span>
+              <span class="brain-ring"></span>
+            </div>
+            <span class="scanline"></span>
+          </div>
+
+          <span class="beam beam-a"></span>
+          <span class="beam beam-b"></span>
+          <span class="beam beam-c"></span>
+        </div>
+
+        <div class="chair" aria-hidden="true">
+          <div class="chair-back"></div>
+          <div class="chair-seat"></div>
+          <div class="chair-base"></div>
+        </div>
+
+        <div class="chrome-wave" aria-hidden="true">
+          <span></span><span></span><span></span><span></span>
+        </div>
+      </div>
+    </section>
+
+    <section id="approach" class="process shell">
+      <div class="section-heading reveal">
+        <p class="eyebrow"><span></span> Our approach</p>
+        <h2>A Process Designed for Traders.</h2>
+        <p>
+          The market rewards structure, not prediction. Build your edge through repeatable observation,
+          planning, execution and review.
+        </p>
+      </div>
+
+      <div class="process-rail reveal">
+        <div class="process-line"></div>
+        <article class="process-item">
+          <span class="icon">◉</span>
+          <h3>Observe</h3>
+          <p>Scan context, liquidity and opportunity without chasing noise.</p>
+        </article>
+        <article class="process-item">
+          <span class="icon">▣</span>
+          <h3>Plan</h3>
+          <p>Define the setup, the invalidation and the position logic.</p>
+        </article>
+        <article class="process-item">
+          <span class="icon">ϟ</span>
+          <h3>Execute</h3>
+          <p>Enter with precision and a calm, predefined decision path.</p>
+        </article>
+        <article class="process-item">
+          <span class="icon">⬢</span>
+          <h3>Manage Risk</h3>
+          <p>Protect capital with smart stop placement and disciplined sizing.</p>
+        </article>
+        <article class="process-item">
+          <span class="icon">↗</span>
+          <h3>Compound</h3>
+          <p>Review, refine and improve your edge over time.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="platform" class="platform shell">
+      <div class="split-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> Powerful tools</p>
+          <h2>Everything You Need.</h2>
+        </div>
+        <p>
+          Inspired by modern trading workflows — stocks, options, futures, ETFs and journaling,
+          all wrapped in one premium interface.
+        </p>
+      </div>
+
+      <div class="feature-grid">
+        <article class="feature-card reveal tilt">
+          <small>UT</small>
+          <h3>Trade Dashboard</h3>
+          <p>Review balances, performance, recent trades and account activity from one dashboard.</p>
+          <div class="mini-chart"></div>
+          <a class="card-link" data-protected-link="dashboard.html" href="login.html?next=dashboard.html">Open Dashboard →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>Ω</small>
+          <h3>Trade Log</h3>
+          <p>Record entries, exits, risk, strategy, session and outcome with MongoDB persistence.</p>
+          <div class="stats-list">
+            <span>Delta</span><span>Theta</span><span>IV</span><span>OI</span>
+          </div>
+          <a class="card-link" data-protected-link="trades.html" href="login.html?next=trades.html">Open Trade Log →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>✕</small>
+          <h3>Analytics</h3>
+          <p>Explore P&L, win rate, profit factor and instrument-level performance.</p>
+          <div class="candles">
+            <i></i><i></i><i></i><i></i><i></i>
+          </div>
+          <a class="card-link" data-protected-link="analytics.html" href="login.html?next=analytics.html">Open Analytics →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>◌</small>
+          <h3>Trading Calendar</h3>
+          <p>Review trading activity by day, week and month through a focused calendar.</p>
+          <div class="donut"></div>
+          <a class="card-link" data-protected-link="calendar.html" href="login.html?next=calendar.html">Open Calendar →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>AI</small>
+          <h3>AI Journal</h3>
+          <p>Capture behavior, mistakes and lessons, then improve the next execution.</p>
+          <ul class="bullet-stack">
+            <li>Behavior tagging</li>
+            <li>Auto review</li>
+            <li>Pattern notes</li>
+          </ul>
+          <a class="card-link" data-protected-link="ai-journal.html" href="login.html?next=ai-journal.html">Open AI Journal →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>Δ</small>
+          <h3>Psychology</h3>
+          <p>Track emotions, discipline, confidence and recurring decision patterns.</p>
+          <div class="data-lines"><span></span><span></span><span></span></div>
+          <a class="card-link" data-protected-link="psychology.html" href="login.html?next=psychology.html">Open Psychology →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>⌘</small>
+          <h3>Connected Workspace</h3>
+          <p>Move securely between dashboard, trades, analytics, journal and settings.</p>
+          <div class="widget-links"><i></i><i></i><i></i></div>
+          <a class="card-link" data-protected-link="dashboard.html" href="login.html?next=dashboard.html">Enter Workspace →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>⛨</small>
+          <h3>Security Controls</h3>
+          <p>Managed sessions, 2FA, device controls, activity history and security alerts.</p>
+          <div class="slider-mock">
+            <span></span><span></span>
+          </div>
+          <a class="card-link" data-protected-link="settings.html" href="login.html?next=settings.html">Review Security →</a>
+        </article>
+
+        <article class="feature-card reveal tilt">
+          <small>▦</small>
+          <h3>Account Settings</h3>
+          <p>Manage profile, password, devices, exports, alerts and account controls.</p>
+          <div class="screen-stack"><i></i><i></i><i></i></div>
+          <a class="card-link" data-protected-link="settings.html" href="login.html?next=settings.html">Open Settings →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="engine" class="engine shell">
+      <div class="split-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> The engine</p>
+          <h2>ProTrade Intelligence Core.</h2>
+        </div>
+        <p>
+          Millions of structured data points flow into a responsive analysis layer
+          to support sharper timing, cleaner focus and execution confidence.
+        </p>
+      </div>
+
+      <div class="engine-layout">
+        <div class="engine-copy reveal">
+          <article class="engine-note">
+            <span>ϟ</span>
+            <div>
+              <h3>Ultra-Fast Execution Insights</h3>
+              <p>Identify high-probability opportunities instantly.</p>
+            </div>
+          </article>
+
+          <article class="engine-note">
+            <span>◎</span>
+            <div>
+              <h3>Adaptive Watchlists</h3>
+              <p>Context-aware lists that evolve as market focus changes.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="processor-stage reveal" data-chip-stage>
+          <div class="processor-grid" aria-hidden="true">
+            <span></span><span></span><span></span><span></span>
+            <span></span><span></span><span></span><span></span>
+          </div>
+
+          <div class="processor-shell" data-chip>
+            <div class="processor-depth"></div>
+            <div class="processor-top">
+              <div class="corner tl"></div>
+              <div class="corner tr"></div>
+              <div class="corner bl"></div>
+              <div class="corner br"></div>
+              <div class="processor-core">
+                <strong>PT</strong>
+                <small>AI CORE</small>
+                <span class="core-scan"></span>
+              </div>
+            </div>
+            <div class="pins top"></div>
+            <div class="pins bottom"></div>
+            <div class="pins left"></div>
+            <div class="pins right"></div>
+          </div>
+
+          <div class="processor-aura" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+
+        <div class="engine-copy reveal">
+          <article class="engine-note">
+            <span>▤</span>
+            <div>
+              <h3>Realtime Depth</h3>
+              <p>Level-2 data and order flow for smarter decisions.</p>
+            </div>
+          </article>
+
+          <article class="engine-note">
+            <span>◇</span>
+            <div>
+              <h3>Low-Latency Infrastructure</h3>
+              <p>Built for speed, reliability and maximum uptime.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="knowledge" class="knowledge shell">
+      <div class="split-heading reveal">
+        <div>
+          <p class="eyebrow"><span></span> Trader insights</p>
+          <h2>Knowledge Builds Edge.</h2>
+        </div>
+        <p>
+          Learn practical strategies, master risk and sharpen your psychology with short,
+          focused insight cards.
+        </p>
+      </div>
+
+      <div class="insight-grid">
+        <article class="insight-card reveal tilt">
+          <div class="thumb thumb-chess"></div>
+          <small>MARKET PSYCHOLOGY · May 28, 2026</small>
+          <h3>Master Your Mind, Master the Market.</h3>
+          <p>Emotions are normal. Control is an edge.</p>
+          <a data-protected-link="psychology.html" href="login.html?next=psychology.html">Open Psychology →</a>
+        </article>
+
+        <article class="insight-card reveal tilt">
+          <div class="thumb thumb-mountain"></div>
+          <small>OPTIONS STRATEGY · May 26, 2026</small>
+          <h3>The Iron Condor, Explained Simply.</h3>
+          <p>A structured approach to profit in range-bound conditions.</p>
+          <a data-protected-link="ai-journal.html" href="login.html?next=ai-journal.html">Open Journal →</a>
+        </article>
+
+        <article class="insight-card reveal tilt">
+          <div class="thumb thumb-bridge"></div>
+          <small>RISK DISCIPLINE · May 24, 2026</small>
+          <h3>Risk Less. Sleep More. Trade Better.</h3>
+          <p>Practical rules that protect your capital before they protect your profits.</p>
+          <a data-protected-link="trades.html" href="login.html?next=trades.html">Review Trades →</a>
+        </article>
+
+        <article class="insight-card reveal tilt">
+          <div class="thumb thumb-architecture"></div>
+          <small>CAPITAL PROTECTION · May 22, 2026</small>
+          <h3>Survive First, Thrive Forever.</h3>
+          <p>Capital preservation is the first rule of longevity.</p>
+          <a data-protected-link="analytics.html" href="login.html?next=analytics.html">Open Analytics →</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="cta" class="closing shell reveal">
+      <div class="closing-ribbon left" aria-hidden="true"></div>
+      <div class="closing-ribbon right" aria-hidden="true"></div>
+      <p class="eyebrow center"><span></span> Built with intent</p>
+      <h2>Precision. Patience. Performance.</h2>
+      <p>Train your edge. Trust your process. Trade with purpose.</p>
+      <a class="btn btn-gold" data-primary-app-link href="login.html?next=dashboard.html"><span data-primary-label>Start Trading Now</span> <span>→</span></a>
+    </section>
+  </main>
+
+  <footer class="footer shell">
+    <div class="footer-brand">
+      <a class="brand" href="#top">
+        <span class="brand-mark"><i></i><i></i><i></i></span>
+        <span class="brand-text">ProTrade</span>
+      </a>
+      <p>Signal beyond noise.</p>
+    </div>
+
+    <div class="footer-links">
+      <div>
+        <h4>Platform</h4>
+        <a data-protected-link="dashboard.html" href="login.html?next=dashboard.html">Dashboard</a>
+        <a data-protected-link="trades.html" href="login.html?next=trades.html">Trade Log</a>
+        <a data-protected-link="analytics.html" href="login.html?next=analytics.html">Analytics</a>
+      </div>
+      <div>
+        <h4>Markets</h4>
+        <a data-protected-link="calendar.html" href="login.html?next=calendar.html">Calendar</a>
+        <a data-protected-link="psychology.html" href="login.html?next=psychology.html">Psychology</a>
+        <a data-protected-link="ai-journal.html" href="login.html?next=ai-journal.html">AI Journal</a>
+      </div>
+      <div>
+        <h4>Knowledge</h4>
+        <a data-protected-link="ai-journal.html" href="login.html?next=ai-journal.html">Journal Insights</a>
+        <a href="login.html">Sign In</a>
+        <a href="register.html">Create Account</a>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <a href="#approach">About</a>
+        <a href="#cta">Contact</a>
+        <a data-protected-link="settings.html" href="login.html?next=settings.html">Security</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="auth.js"></script>
+  <script src="protrader-v5.js"></script>
+</body>
+</html>

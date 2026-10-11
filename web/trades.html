@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#f5f9fc" name="theme-color"/>
+<title>ProTrade — Trades</title>
+<link href="styles.css" rel="stylesheet"/>
+<link href="app-loader.css" rel="stylesheet"/><link href="protrade-shell.css" rel="stylesheet"/></head>
+<body class="protrade-page"><div aria-label="Loading ProTrade" aria-live="polite" class="app-loading" id="appLoading">
+<aside aria-hidden="true" class="loading-sidebar">
+<div class="sk sk-logo"></div>
+<div class="loading-nav"><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div></div>
+<div class="loading-grow"></div><div class="sk sk-profile"></div><div class="sk sk-account"></div><div class="sk sk-theme"></div>
+</aside>
+<section aria-hidden="true" class="loading-main">
+<div class="loading-top"><div class="sk sk-welcome"></div><div class="sk sk-actions"></div></div>
+<div class="loading-content"><div class="sk sk-title"></div><div class="loading-cards"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div><div class="loading-panels"><div class="sk"></div><div class="sk"></div></div><div class="sk sk-wide"></div></div>
+</section>
+</div>
+<div class="app-shell">
+<aside class="sidebar" id="sidebar">
+<div class="brand-row">
+<div aria-hidden="true" class="brand-mark"><span></span><span></span><span></span><span></span></div>
+<div class="brand-copy"><h1>ProTrade</h1><p>TRADING JOURNAL</p></div>
+<button aria-label="Collapse sidebar" class="sidebar-collapse" id="sidebarCollapseBtn" title="Collapse sidebar" type="button">‹</button></div>
+<nav aria-label="Primary navigation" class="sidebar-nav" id="sidebarNav"><button class="nav-item" data-page="Dashboard" data-route="dashboard.html" type="button">
+<span class="nav-icon">▣</span><span>Dashboard</span>
+</button><button class="nav-item active" data-page="Trades" data-route="trades.html" type="button">
+<span class="nav-icon">↻</span><span>Trades</span><span class="nav-tail">›</span>
+</button><button class="nav-item" data-page="Calendar" data-route="calendar.html" type="button">
+<span class="nav-icon">▦</span><span>Calendar</span>
+</button><button class="nav-item" data-page="Risk Management" data-route="risk-management.html" type="button">
+<span class="nav-icon">◇</span><span>Risk Management</span>
+</button><button class="nav-item" data-page="Psychology" data-route="psychology.html" type="button">
+<span class="nav-icon">♡</span><span>Psychology</span>
+</button><button class="nav-item" data-page="Journal" data-route="journal.html" type="button">
+<span class="nav-icon">▤</span><span>Journal</span>
+</button><button class="nav-item" data-page="Reports" data-route="reports.html" type="button">
+<span class="nav-icon">▧</span><span>Reports</span>
+</button><button class="nav-item" data-page="Settings" data-route="settings.html" type="button">
+<span class="nav-icon">⚙</span><span>Settings</span>
+</button></nav>
+<div class="sidebar-bottom">
+<div class="profile-wrap">
+<button class="profile-card" id="profileBtn" type="button">
+<span class="avatar auth-user-initials">T</span>
+<span class="profile-copy"><strong class="auth-user-name">Trader</strong><small id="profileRole">Independent Trader</small></span><span>⌄</span>
+</button>
+<div class="popover profile-popover" hidden="" id="profilePopover"><button data-profile-action="profile" type="button">My Profile</button><button data-profile-action="account" type="button">Account Settings</button><button data-profile-action="logout" type="button">Sign Out</button></div>
+</div>
+<div class="account-card">
+<div class="account-head"><span>Account Balance</span><button aria-label="Hide or show balance" class="ghost-icon" id="balanceVisibilityBtn" type="button">◉</button></div>
+<strong id="sidebarBalance">—</strong>
+<div class="equity-block"><span>Equity</span><b id="sidebarEquity">—</b></div>
+<div class="broker-block"><span>Data Source</span><strong id="dataSourceLabel">MongoDB Journal</strong><i></i></div>
+</div>
+<div class="theme-card"><span id="themeLabel">Dark Mode</span><button aria-label="Switch light and dark mode" class="theme-switch" id="themeSwitch" type="button"><span></span></button></div>
+</div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main">
+<header class="top-header topbar">
+<div class="welcome-area welcome welcome-block"><button aria-label="Open menu" class="mobile-menu" id="mobileMenuBtn" type="button">☰</button><div><h2>Welcome back, <span class="auth-user-name" id="welcomeName">Trader</span><span> ♛</span></h2><p>Discipline today, freedom tomorrow.</p></div></div>
+<div class="header-actions top-actions topbar-actions">
+<button class="header-control" id="dateRangeBtn" type="button"><span id="dateRangeLabel">Last 30 Days</span><span>▦</span></button>
+<div class="dropdown-wrap"><button class="header-control" id="accountSelectorBtn" type="button"><span id="accountLabel">All Accounts</span><span>⌄</span></button><div class="popover dropdown-popover" hidden="" id="accountPopover"><button data-account="all" type="button">All Accounts</button></div></div>
+<button aria-label="Notifications" class="notification-btn" id="notificationBtn" type="button">♧<span id="notificationCount">0</span></button>
+<button class="new-trade-btn" data-new-trade="" id="newTradeBtn" type="button">＋ New Trade</button>
+</div>
+</header>
+<section class="center-content">
+<div class="content-heading">
+<div><h2>All Trades</h2><p class="api-status" id="tradesStatus">Connecting to ProTrade backend…</p></div>
+<div class="content-actions"><input class="trade-search" id="tradeSearch" placeholder="Search trades…" type="search"/>
+<button id="filterBtn" type="button">▽ Filter</button>
+<button id="groupBtn" type="button">◎ Group</button>
+<button id="sortBtn" type="button">⇅ Sort</button>
+<button class="icon-action" id="moreBtn" type="button">⋯</button>
+</div>
+</div>
+<section class="trade-section panel">
+<div class="trade-tabs" id="tradeTabs">
+<button class="active" data-tab="all" type="button">All Trades</button>
+<button data-tab="open" type="button">Open Trades</button>
+<button data-tab="closed" type="button">Closed Trades</button>
+<button data-tab="unreviewed" type="button">Unreviewed</button>
+</div>
+<div class="table-scroll">
+<table class="trades-table">
+<thead>
+<tr>
+<th>Trade ID</th>
+<th><button class="table-sort" id="dateSortBtn" type="button">Date ⌄</button></th>
+<th>Symbol</th>
+<th>Direction</th>
+<th>Strategy</th>
+<th>Session</th>
+<th>Entry</th>
+<th>Exit</th>
+<th>Net P&amp;L</th>
+<th>R Multiple</th>
+<th>Result</th>
+<th>Review / Screenshot</th>
+</tr>
+</thead>
+<tbody id="tradeBody"><tr><td class="empty-row" colspan="12">Loading trades…</td></tr></tbody>
+</table>
+</div>
+<div class="table-footer">
+<p>Showing <span id="visibleFrom">0</span> to <span id="visibleTo">0</span> of <strong id="totalTradeCount">0</strong> trades</p>
+<div class="pagination" id="pagination"></div>
+<select id="pageSizeSelect"><option value="5">5 / page</option><option selected="" value="10">10 / page</option><option value="25">25 / page</option></select>
+</div>
+</section>
+<section class="metrics-grid">
+<button class="metric-card" data-metric="Total Trades" type="button"><span class="metric-icon green">⌁</span><span><small>Total Trades</small><strong id="metricTotalTrades">0</strong></span></button>
+<button class="metric-card" data-metric="Win Rate" type="button"><span class="metric-icon blue">◎</span><span><small>Win Rate</small><strong id="metricWinRate">0.0%</strong></span></button>
+<button class="metric-card" data-metric="Total Net Profit" type="button"><span class="metric-icon green">$</span><span><small>Total Net Profit</small><strong class="positive" id="metricNetProfit">—</strong></span></button>
+<button class="metric-card" data-metric="Profit Factor" type="button"><span class="metric-icon purple">▥</span><span><small>Profit Factor</small><strong id="metricProfitFactor">—</strong></span></button>
+<button class="metric-card" data-metric="Avg R Multiple" type="button"><span class="metric-icon gold">R</span><span><small>Avg R Multiple</small><strong id="metricAvgRR">—</strong></span></button>
+<button class="metric-card chart-metric" data-metric="Equity Curve" type="button"><span class="chart-label">Equity Curve</span><canvas id="equitySpark"></canvas></button>
+</section>
+<section class="detail-shell panel">
+<div class="detail-topline">
+<button class="back-link" id="backToTradesBtn" type="button">‹ Back to Trades</button>
+<h3>2. TRADE DETAIL VIEW</h3>
+<div class="detail-buttons"><button id="editTradeBtn" type="button">✎ Edit</button><button id="exportTradeBtn" type="button">⇪</button><button id="shareTradeBtn" type="button">♧ Share</button><button id="deleteTradeBtn" type="button">🗑 Delete</button></div>
+</div>
+<div class="detail-grid">
+<article class="detail-card">
+<h4>ⓘ Trade Information</h4>
+<dl id="tradeInfoList"><div class="detail-empty">Select a trade to view details.</div></dl>
+</article>
+<article class="detail-card">
+<h4>⇄ Entry &amp; Exit Summary</h4>
+<div class="entry-exit" id="tradeEntryExit"><div class="detail-empty">No trade selected.</div></div>
+</article>
+<article class="detail-card">
+<h4>◫ Result</h4>
+<div class="result-grid" id="tradeResultGrid"><div class="detail-empty">No trade selected.</div></div>
+</article>
+<article class="detail-card">
+<h4>◇ Risk Management</h4>
+<dl id="tradeRiskList"><div class="detail-empty">No trade selected.</div></dl>
+</article>
+</div>
+<div class="screenshots-card">
+<h4>▧ Screenshots &amp; Notes</h4>
+<div class="screenshot-grid" id="tradeScreenshotGrid"><button class="add-screenshot" id="addScreenshotBtn" type="button">＋ Add Screenshot URL</button></div>
+</div>
+</section>
+</section>
+<footer class="bottom-summary">
+<div class="quote"><span class="diamond">◇</span><span>Discipline is the bridge between goals and accomplishment.</span></div>
+<div class="summary-stat"><small>Total Trades</small><strong id="footerTotalTrades">0</strong></div>
+<div class="summary-stat"><small>Profitable Trades</small><strong class="positive" id="footerWins">0</strong></div>
+<div class="summary-stat"><small>Losing Trades</small><strong class="negative" id="footerLosses">0</strong></div>
+<div class="summary-stat"><small>Breakeven</small><strong id="footerBreakeven">0</strong></div>
+</footer>
+</main>
+</div>
+<div class="modal-backdrop" hidden="" id="dateModal">
+<form class="modal" id="dateForm">
+<div class="modal-head"><div><h3>Select Date Range</h3><p>Update the reporting period.</p></div><button data-close="dateModal" type="button">×</button></div>
+<div class="form-grid"><label>Start Date<input id="startDate" required="" type="date"/></label><label>End Date<input id="endDate" required="" type="date"/></label></div>
+<div class="modal-actions"><button class="secondary" data-close="dateModal" type="button">Cancel</button><button class="primary" type="submit">Apply</button></div>
+</form>
+</div>
+<div class="modal-backdrop" hidden="" id="tradeModal">
+<form class="modal wide-modal" id="tradeForm">
+<div class="modal-head"><div><h3>Add New Trade</h3><p>Create a new trade record.</p></div><button data-close="tradeModal" type="button">×</button></div><div class="form-grid three"><label>Trade Date<input id="tradeDate" name="tradeDate" required="" type="date"/></label><label>Symbol<input id="symbol" name="symbol" placeholder="EURUSD" required="" type="text"/></label><label>Direction<select id="direction" name="direction"><option value="Long">Long</option><option value="Short">Short</option></select></label><label>Session<select id="session" name="session"><option value="Asian">Asian</option><option value="London">London</option><option value="New York">New York</option><option value="Other">Other</option></select></label><label>Strategy / Model<input id="model" name="model" type="text"/></label><label>Protocol<input id="protocol" name="protocol" type="text"/></label><label>Entry Time<input id="entryTime" name="entryTime" type="time"/></label><label>Exit Time<input id="exitTime" name="exitTime" type="time"/></label><label>Entry Price<input id="entryPrice" name="entryPrice" required="" step="any" type="number"/></label><label>Exit Price<input id="exitPrice" name="exitPrice" step="any" type="number"/></label><label>Stop Loss<input id="stopLoss" name="stopLoss" step="any" type="number"/></label><label>Take Profit<input id="takeProfit" name="takeProfit" step="any" type="number"/></label><label>Quantity<input id="quantity" name="quantity" step="any" type="number" value="1"/></label><label>Commission<input id="commission" name="commission" step="any" type="number" value="0"/></label><label>Net P&amp;L<input id="profitLoss" name="profitLoss" step="any" type="number" value="0"/></label><label>R Multiple<input id="rr" name="rr" step="any" type="number" value="0"/></label><label>Result<select id="result" name="result"><option value="Open">Open</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="Breakeven">Breakeven</option></select></label><label>Rating<select id="rating" name="rating"><option value="">No rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label><label>Screenshot URL<input id="screenshotUrl" name="screenshotUrl" type="url"/></label><label class="full-span">Notes<textarea id="notes" maxlength="5000" name="notes" rows="3"></textarea></label></div>
+<div class="modal-actions"><button class="secondary" data-close="tradeModal" type="button">Cancel</button><button class="primary" type="submit">Save Trade</button></div>
+</form>
+</div>
+<div class="modal-backdrop" hidden="" id="filterModal">
+<form class="modal" id="filterForm">
+<div class="modal-head"><div><h3>Filter Trades</h3><p>Filter the visible trades.</p></div><button data-close="filterModal" type="button">×</button></div><div class="form-grid three"><label>Symbol<input id="filterSymbol" type="text"/></label><label>Session<select id="filterSession"><option value="">All</option><option value="Asian">Asian</option><option value="London">London</option><option value="New York">New York</option><option value="Other">Other</option></select></label><label>Result<select id="filterResult"><option value="">All</option><option value="Open">Open</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="Breakeven">Breakeven</option></select></label><label>Direction<select id="filterDirection"><option value="">All</option><option value="Long">Long</option><option value="Short">Short</option></select></label><label>From Date<input id="filterDateFrom" type="date"/></label><label>To Date<input id="filterDateTo" type="date"/></label><label>Minimum P&amp;L<input id="filterMinPnl" step="any" type="number"/></label><label>Maximum P&amp;L<input id="filterMaxPnl" step="any" type="number"/></label></div>
+<div class="modal-actions"><button class="secondary" id="clearFilterBtn" type="button">Clear</button><button class="primary" type="submit">Apply Filter</button></div>
+</form>
+</div>
+<div class="modal-backdrop" hidden="" id="editModal">
+<form class="modal" id="editForm">
+<div class="modal-head"><div><h3>Edit Selected Trade</h3><p>Update the selected trade details.</p></div><button data-close="editModal" type="button">×</button></div><div class="form-grid three"><label>Trade Date<input id="edit-tradeDate" name="tradeDate" required="" type="date"/></label><label>Symbol<input id="edit-symbol" name="symbol" placeholder="EURUSD" required="" type="text"/></label><label>Direction<select id="edit-direction" name="direction"><option value="Long">Long</option><option value="Short">Short</option></select></label><label>Session<select id="edit-session" name="session"><option value="Asian">Asian</option><option value="London">London</option><option value="New York">New York</option><option value="Other">Other</option></select></label><label>Strategy / Model<input id="edit-model" name="model" type="text"/></label><label>Protocol<input id="edit-protocol" name="protocol" type="text"/></label><label>Entry Time<input id="edit-entryTime" name="entryTime" type="time"/></label><label>Exit Time<input id="edit-exitTime" name="exitTime" type="time"/></label><label>Entry Price<input id="edit-entryPrice" name="entryPrice" required="" step="any" type="number"/></label><label>Exit Price<input id="edit-exitPrice" name="exitPrice" step="any" type="number"/></label><label>Stop Loss<input id="edit-stopLoss" name="stopLoss" step="any" type="number"/></label><label>Take Profit<input id="edit-takeProfit" name="takeProfit" step="any" type="number"/></label><label>Quantity<input id="edit-quantity" name="quantity" step="any" type="number" value="1"/></label><label>Commission<input id="edit-commission" name="commission" step="any" type="number" value="0"/></label><label>Net P&amp;L<input id="edit-profitLoss" name="profitLoss" step="any" type="number" value="0"/></label><label>R Multiple<input id="edit-rr" name="rr" step="any" type="number" value="0"/></label><label>Result<select id="edit-result" name="result"><option value="Open">Open</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="Breakeven">Breakeven</option></select></label><label>Rating<select id="edit-rating" name="rating"><option value="">No rating</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option></select></label><label>Screenshot URL<input id="edit-screenshotUrl" name="screenshotUrl" type="url"/></label><label class="full-span">Notes<textarea id="edit-notes" maxlength="5000" name="notes" rows="3"></textarea></label></div>
+<div class="modal-actions"><button class="secondary" data-close="editModal" type="button">Cancel</button><button class="primary" type="submit">Update Trade</button></div>
+</form>
+</div>
+<div class="modal-backdrop" hidden="" id="infoModal">
+<div class="modal">
+<div class="modal-head"><div><h3 id="infoTitle">Information</h3><p id="infoSubtitle">Action details</p></div><button data-close="infoModal" type="button">×</button></div>
+<div class="info-body" id="infoBody"></div>
+<div class="modal-actions"><button class="primary" data-close="infoModal" type="button">Done</button></div>
+</div>
+</div>
+<div aria-live="polite" class="toast-stack" id="toastStack"></div>
+<script src="auth.js"></script><script src="trades.js"></script>
+<script src="new-trade-modal.js"></script><script src="protrade-shell.js"></script><script src="app-loader.js"></script></body>
+</html>

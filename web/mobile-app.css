@@ -1,0 +1,16 @@
+/* Applied only to Capacitor Android; desktop website remains unchanged. */
+html, body { -webkit-text-size-adjust: 100%; }
+html { overscroll-behavior: none; }
+body { padding-bottom: max(0px, env(safe-area-inset-bottom)); }
+button, input, select, textarea { touch-action: manipulation; }
+#protrader-mobile-network-gate[hidden] { display: none !important; }
+#protrader-mobile-network-gate { position:fixed; inset:0; z-index:2147483647; background:#070c14; display:grid; place-items:center; padding:calc(18px + env(safe-area-inset-top)) 22px calc(18px + env(safe-area-inset-bottom)); color:#e9f0f7; font: 16px/1.5 system-ui, -apple-system, sans-serif; }
+#protrader-mobile-network-gate .pm-connect-card { box-sizing:border-box; width:min(100%,420px); text-align:center; border:1px solid #263344; background:linear-gradient(145deg,#131e31,#0c111a); border-radius:28px; padding:30px 24px; box-shadow:0 20px 70px #0008; }
+#protrader-mobile-network-gate .pm-app-mark { width:66px;height:66px; margin:0 auto 16px; border-radius:20px;display:grid;place-content:center;background:linear-gradient(145deg,#397dfa,#153e88);font-size:38px;font-weight:900;color:white; }
+#protrader-mobile-network-gate .pm-app-mark span { color:#6ff9d3; }
+#protrader-mobile-network-gate .pm-app-eyebrow { color:#74b8e7;letter-spacing:.14em; font-weight:700;font-size:10px; }
+#protrader-mobile-network-gate h1 {font-size:23px;line-height:1.2;margin:13px 0 12px;font-weight:750;color:#fafbff;}
+#protrader-mobile-network-gate p {font-size:14px;color:#c0cad7;line-height:1.65;min-height:54px;}
+#protrader-mobile-network-gate button {border:0;border-radius:12px;background:#397dfa;color:white;font-size:15px;font-weight:700;padding:12px 24px;margin:18px 0;cursor:pointer;}
+#protrader-mobile-network-gate small {display:block;margin-top:14px;font-size:11px;color:#7d91a4;line-height:1.5;}
+@media (max-width:480px) { html {scroll-padding-top:env(safe-area-inset-top);} input, textarea, select {max-width:100%;} }

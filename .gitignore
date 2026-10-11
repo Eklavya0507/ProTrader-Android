@@ -1,0 +1,9 @@
+node_modules/
+android/
+www/
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+.DS_Store

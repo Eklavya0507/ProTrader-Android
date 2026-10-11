@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="#f5f9fc" name="theme-color"/>
+<title>ProTrade — Settings</title>
+<link href="settings.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><link href="app-loader.css" rel="stylesheet"/><link href="protrade-shell.css" rel="stylesheet"/></head>
+<body class="protrade-page"><div aria-label="Loading ProTrade" aria-live="polite" class="app-loading" id="appLoading">
+<aside aria-hidden="true" class="loading-sidebar">
+<div class="sk sk-logo"></div>
+<div class="loading-nav"><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div><div class="sk sk-nav"></div></div>
+<div class="loading-grow"></div><div class="sk sk-profile"></div><div class="sk sk-account"></div><div class="sk sk-theme"></div>
+</aside>
+<section aria-hidden="true" class="loading-main">
+<div class="loading-top"><div class="sk sk-welcome"></div><div class="sk sk-actions"></div></div>
+<div class="loading-content"><div class="sk sk-title"></div><div class="loading-cards"><div class="sk"></div><div class="sk"></div><div class="sk"></div><div class="sk"></div></div><div class="loading-panels"><div class="sk"></div><div class="sk"></div></div><div class="sk sk-wide"></div></div>
+</section>
+</div>
+<div class="app-shell">
+<!-- Fixed ProTrade Sidebar -->
+<aside class="sidebar" id="sidebar">
+<div class="brand-row">
+<div aria-hidden="true" class="brand-mark"><span></span><span></span><span></span><span></span></div>
+<div class="brand-copy"><h1>ProTrade</h1><p>TRADING JOURNAL</p></div>
+<button aria-label="Collapse sidebar" class="sidebar-collapse" id="sidebarCollapseBtn" title="Collapse sidebar" type="button">‹</button></div>
+<nav aria-label="Primary navigation" class="sidebar-nav" id="sidebarNav"><button class="nav-item" data-page="Dashboard" data-route="dashboard.html" type="button">
+<span class="nav-icon">▣</span><span>Dashboard</span>
+</button><button class="nav-item" data-page="Trades" data-route="trades.html" type="button">
+<span class="nav-icon">↻</span><span>Trades</span>
+</button><button class="nav-item" data-page="Calendar" data-route="calendar.html" type="button">
+<span class="nav-icon">▦</span><span>Calendar</span>
+</button><button class="nav-item" data-page="Risk Management" data-route="risk-management.html" type="button">
+<span class="nav-icon">◇</span><span>Risk Management</span>
+</button><button class="nav-item" data-page="Psychology" data-route="psychology.html" type="button">
+<span class="nav-icon">♡</span><span>Psychology</span>
+</button><button class="nav-item" data-page="Journal" data-route="journal.html" type="button">
+<span class="nav-icon">▤</span><span>Journal</span>
+</button><button class="nav-item" data-page="Reports" data-route="reports.html" type="button">
+<span class="nav-icon">▧</span><span>Reports</span>
+</button><button class="nav-item active" data-page="Settings" data-route="settings.html" type="button">
+<span class="nav-icon">⚙</span><span>Settings</span><span class="nav-tail">›</span>
+</button></nav>
+<div class="sidebar-bottom">
+<div class="profile-wrap">
+<button class="profile-card" id="profileBtn" type="button">
+<span class="avatar auth-user-initials">T</span>
+<span class="profile-copy"><strong class="auth-user-name">Trader</strong><small id="profileRole">Independent Trader</small></span><span>⌄</span>
+</button>
+<div class="popover profile-popover" hidden="" id="profilePopover"><button data-profile-action="profile" type="button">My Profile</button><button data-profile-action="account" type="button">Account Settings</button><button data-profile-action="logout" type="button">Sign Out</button></div>
+</div>
+<div class="account-card">
+<div class="account-head"><span>Account Balance</span><button aria-label="Hide or show balance" class="ghost-icon" id="balanceVisibilityBtn" type="button">◉</button></div>
+<strong id="sidebarBalance">—</strong>
+<div class="equity-block"><span>Equity</span><b id="sidebarEquity">—</b></div>
+<div class="broker-block"><span>Data Source</span><strong id="dataSourceLabel">MongoDB Journal</strong><i></i></div>
+</div>
+<div class="theme-card"><span id="sidebarThemeLabel">Dark Mode</span><button aria-label="Switch light and dark mode" class="theme-switch" id="themeSwitch" type="button"><span></span></button></div>
+</div>
+</aside>
+<div class="sidebar-overlay" id="sidebarOverlay"></div>
+<main class="main-content">
+<!-- Fixed ProTrade Top Header -->
+<header class="top-header topbar">
+<div class="welcome-area welcome welcome-block"><button aria-label="Open menu" class="mobile-menu" id="mobileMenuBtn" type="button">☰</button><div><h2>Welcome back, <span class="auth-user-name" id="welcomeName">Trader</span><span> ♛</span></h2><p>Discipline today, freedom tomorrow.</p></div></div>
+<div class="header-actions top-actions topbar-actions">
+<button class="header-control" id="dateRangeBtn" type="button"><span id="dateRangeLabel">Last 30 Days</span><span>▦</span></button>
+<div class="dropdown-wrap"><button class="header-control" id="accountSelectorBtn" type="button"><span id="accountLabel">All Accounts</span><span>⌄</span></button><div class="popover dropdown-popover" hidden="" id="accountSelectorPopover"><button data-account="all" type="button">All Accounts</button></div></div>
+<button aria-label="Notifications" class="notification-btn" id="notificationBtn" type="button">♧<span id="notificationBadge">0</span></button>
+<button class="new-trade-btn" data-new-trade="" id="newTradeBtn" type="button">＋ New Trade</button>
+</div>
+</header>
+<!-- Settings Context Area -->
+<section class="settings-page">
+<div class="settings-page-head">
+<div>
+<span class="page-eyebrow">WORKSPACE CONTROL CENTER</span>
+<h3>Settings</h3>
+<p>Manage your ProTrade profile, preferences, trading setup and account security.</p>
+</div>
+<label class="settings-search">
+<span>⌕</span>
+<input autocomplete="off" id="settingsSearchInput" placeholder="Search settings..." type="search"/>
+<kbd>Ctrl K</kbd>
+</label>
+</div>
+<div class="settings-layout">
+<!-- Notion-inspired local settings navigation -->
+<aside class="settings-nav-panel">
+<div class="settings-user-mini">
+<span class="avatar small auth-user-initials">T</span>
+<div>
+<strong class="auth-user-name">Trader</strong>
+<small id="settingsMiniEmail">Signed-in account</small>
+</div>
+</div>
+<div class="settings-nav-group">
+<span class="settings-nav-label">Account</span>
+<button class="settings-nav-item active" data-settings-view="account" type="button">
+<span>◎</span><b>My profile</b>
+</button>
+<button class="settings-nav-item" data-settings-view="preferences" type="button">
+<span>⌘</span><b>Preferences</b>
+</button>
+<button class="settings-nav-item" data-settings-view="appearance" type="button">
+<span>◐</span><b>Appearance</b>
+</button>
+<button class="settings-nav-item" data-settings-view="notifications" type="button">
+<span>♧</span><b>Notifications</b>
+</button>
+</div>
+<div class="settings-nav-group">
+<span class="settings-nav-label">Trading workspace</span>
+<button class="settings-nav-item" data-settings-view="trading" type="button">
+<span>⇄</span><b>Trading defaults</b>
+</button>
+<button class="settings-nav-item" data-settings-view="connections" type="button">
+<span>⛓</span><b>Connections</b>
+</button>
+<button class="settings-nav-item" data-settings-view="subscription" type="button">
+<span>◇</span><b>Subscription &amp; billing</b>
+</button>
+</div>
+<div class="settings-nav-group">
+<span class="settings-nav-label">Security &amp; data</span>
+<button class="settings-nav-item" data-settings-view="security" type="button">
+<span>⌾</span><b>Security</b>
+</button>
+<button class="settings-nav-item" data-settings-view="data" type="button">
+<span>▧</span><b>Data &amp; privacy</b>
+</button>
+</div>
+</aside>
+<!-- Settings content -->
+<section class="settings-content-panel">
+<!-- Account -->
+<div class="settings-view active" data-view="account">
+<div class="view-head">
+<div>
+<h4>My profile</h4>
+<p>Update the information displayed across your ProTrade workspace.</p>
+</div>
+<span class="status-pill success">Account active</span>
+</div>
+<div class="profile-editor-card">
+<div class="profile-photo-block">
+<span class="avatar large" id="profileAvatarPreview">AT</span>
+<div>
+<strong>Profile photo</strong>
+<p>Current backend has no direct avatar-upload endpoint. Google avatar or initials are displayed.</p>
+<div class="inline-actions">
+<button class="secondary-btn" disabled="" id="uploadAvatarBtn" title="Backend avatar upload is not available yet." type="button">Upload photo</button>
+<button class="text-btn danger-text" disabled="" id="removeAvatarBtn" title="Backend avatar upload is not available yet." type="button">Remove</button>
+</div>
+</div>
+<input accept="image/png,image/jpeg,image/webp" hidden="" id="avatarInput" type="file"/>
+</div>
+</div>
+<form class="settings-form" id="profileForm">
+<div class="form-grid two">
+<label><span>Display name</span><input id="fullNameInput" maxlength="100" name="fullName" required="" type="text"/></label>
+<label><span>Email address</span><input id="emailInput" name="email" readonly="" type="email"/><small>Use the secure email-change form below.</small></label>
+<label><span>Trading timezone</span><select id="timezoneSelect" name="timezone">
+<option value="Asia/Kolkata">UTC +05:30 — India Standard Time</option>
+<option value="Europe/London">UTC +00:00 — London</option>
+<option value="America/New_York">UTC -05:00 — New York</option>
+<option value="Asia/Tokyo">UTC +09:00 — Tokyo</option>
+<option value="UTC">UTC</option>
+</select></label>
+<label><span>Trading role</span><input id="tradingRoleInput" maxlength="100" name="tradingRole" placeholder="Independent Trader" type="text"/></label>
+</div>
+<div class="form-actions"><span class="save-state" id="profileSaveState">Loading profile…</span><button class="primary-btn" type="submit">Save profile</button></div>
+</form>
+<div class="settings-section" id="emailChangeSection">
+<div class="section-title"><div><h5>Secure email change</h5><p>Approval links are sent to both the current and new email address.</p></div><span class="status-pill" id="emailChangeStatus">Checking…</span></div>
+<form class="password-form" id="emailChangeForm">
+<label><span>New email</span><input name="newEmail" required="" type="email"/></label>
+<label><span>Current password</span><input autocomplete="current-password" name="currentPassword" placeholder="Required for password accounts" type="password"/></label>
+<button class="secondary-btn" type="submit">Request email change</button>
+<button class="text-btn danger-text" hidden="" id="cancelEmailChangeBtn" type="button">Cancel pending request</button>
+</form>
+</div>
+</div>
+<!-- Preferences -->
+<div class="settings-view" data-view="preferences">
+<div class="view-head">
+<div>
+<h4>Preferences</h4>
+<p>Choose how data, dates and journal information behave.</p>
+</div>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Language and region</h5><p>Control formatting used throughout ProTrade.</p></div>
+</div>
+<div class="preference-list">
+<div class="preference-row">
+<div><strong>Language</strong><p>Interface language for your account.</p></div>
+<select disabled="" id="languageSelect" title="Language is not stored by the current backend.">
+<option selected="">English (India)</option>
+</select>
+</div>
+<div class="preference-row">
+<div><strong>Date format</strong><p>Used in calendars, trade tables and reports.</p></div>
+<select id="dateFormatSelect"><option value="DD MMM YYYY">DD MMM YYYY</option><option value="MM/DD/YYYY">MM/DD/YYYY</option><option value="YYYY-MM-DD">YYYY-MM-DD</option></select>
+</div>
+<div class="preference-row">
+<div><strong>Base currency</strong><p>Default currency for balances and P&amp;L.</p></div>
+<select id="currencySelect"><option value="USD">USD — US Dollar</option><option value="INR">INR — Indian Rupee</option><option value="EUR">EUR — Euro</option><option value="GBP">GBP — Pound Sterling</option><option value="JPY">JPY — Japanese Yen</option></select>
+</div>
+</div>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Workspace behavior</h5><p>Fine tune the trading journal experience.</p></div>
+</div>
+<div class="toggle-list">
+<label class="toggle-row">
+<div><strong>Open last visited page</strong><p>Return to the page you used most recently.</p></div>
+<input checked="" class="native-toggle" type="checkbox"/>
+<span class="toggle-ui"></span>
+</label>
+<label class="toggle-row">
+<div><strong>Compact tables</strong><p>Display more trades and rows on screen.</p></div>
+<input class="native-toggle" id="compactModeToggle" type="checkbox"/>
+<span class="toggle-ui"></span>
+</label>
+<label class="toggle-row">
+<div><strong>Confirm before deleting</strong><p>Ask for confirmation before permanent actions.</p></div>
+<input checked="" class="native-toggle" type="checkbox"/>
+<span class="toggle-ui"></span>
+</label>
+</div>
+</div>
+<div class="form-actions">
+<span class="save-state" id="preferencesSaveState">Preferences are synced</span>
+<button class="primary-btn" id="savePreferencesBtn" type="button">Save preferences</button>
+</div>
+</div>
+<!-- Appearance -->
+<div class="settings-view" data-view="appearance">
+<div class="view-head">
+<div>
+<h4>Appearance</h4>
+<p>Customize theme, accent color and workspace density.</p>
+</div>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Theme</h5><p>Select how ProTrade should look on this device.</p></div>
+</div>
+<div class="theme-choice-grid" id="themeChoiceGrid">
+<button class="theme-choice" data-theme-choice="light" type="button">
+<span class="theme-preview light-preview">
+<i></i><b></b><em></em>
+</span>
+<strong>Light</strong>
+<small>Clean and bright</small>
+</button>
+<button class="theme-choice selected" data-theme-choice="dark" type="button">
+<span class="theme-preview dark-preview">
+<i></i><b></b><em></em>
+</span>
+<strong>Dark</strong>
+<small>Deep black workspace</small>
+</button>
+<button class="theme-choice" data-theme-choice="system" type="button">
+<span class="theme-preview system-preview">
+<i></i><b></b><em></em>
+</span>
+<strong>System</strong>
+<small>Follow device theme</small>
+</button>
+</div>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Accent color</h5><p>Used for selected controls, charts and highlights.</p></div>
+</div>
+<div class="accent-options" id="accentOptions">
+<button aria-label="Green accent" class="accent-button selected" data-accent="green" type="button"><span class="green-accent"></span></button>
+<button aria-label="Blue accent" class="accent-button" data-accent="blue" type="button"><span class="blue-accent"></span></button>
+<button aria-label="Purple accent" class="accent-button" data-accent="purple" type="button"><span class="purple-accent"></span></button>
+<button aria-label="Orange accent" class="accent-button" data-accent="orange" type="button"><span class="orange-accent"></span></button>
+</div>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Interface density</h5><p>Adjust spacing used in cards and tables.</p></div>
+</div>
+<div class="segmented-control" id="densityControl">
+<button data-density="comfortable" type="button">Comfortable</button>
+<button class="active" data-density="balanced" type="button">Balanced</button>
+<button data-density="compact" type="button">Compact</button>
+</div>
+</div>
+<div class="appearance-demo">
+<div class="appearance-demo-head"><span>Live preview</span><b>ProTrade card</b></div>
+<div class="appearance-demo-body">
+<span class="demo-icon">↗</span>
+<div><small>Net Profit</small><strong class="positive">Live data</strong></div>
+<span class="demo-badge">Preview</span>
+</div>
+</div>
+</div>
+<!-- Notifications -->
+<div class="settings-view" data-view="notifications">
+<div class="view-head">
+<div>
+<h4>Notifications</h4>
+<p>Decide which events should reach you and where.</p>
+</div>
+</div>
+<div class="notification-table">
+<div class="notification-table-head"><span>Backend preference</span><span>Enabled</span><span>Storage</span></div>
+<div class="notification-setting-row"><div><strong>Trade reminders</strong><p>Remind you about pending trade reviews.</p></div><label class="mini-toggle"><input id="tradeRemindersToggle" type="checkbox"/><span></span></label><small>MongoDB</small></div>
+<div class="notification-setting-row"><div><strong>Weekly performance summary</strong><p>Keep the weekly summary preference enabled.</p></div><label class="mini-toggle"><input id="weeklySummaryToggle" type="checkbox"/><span></span></label><small>MongoDB</small></div>
+<div class="notification-setting-row"><div><strong>Email notifications</strong><p>Allow supported ProTrade email notifications.</p></div><label class="mini-toggle"><input id="emailNotificationsToggle" type="checkbox"/><span></span></label><small>MongoDB</small></div>
+</div>
+<div class="form-actions">
+<span class="save-state">Changes save automatically</span>
+<button class="secondary-btn" id="testNotificationBtn" type="button">Send test notification</button>
+</div>
+</div>
+<!-- Trading defaults -->
+<div class="settings-view" data-view="trading">
+<div class="view-head">
+<div>
+<h4>Trading defaults</h4>
+<p>Set the values automatically used when creating new trades.</p>
+</div>
+</div>
+<form class="settings-form" id="tradingDefaultsForm">
+<div class="form-grid two">
+<label><span>Starting balance</span><input min="0" name="startingBalance" required="" step="0.01" type="number"/></label>
+<label><span>Target balance</span><input min="0" name="targetBalance" required="" step="0.01" type="number"/></label>
+<label><span>Risk per trade (%)</span><input max="100" min="0" name="riskPerTrade" required="" step="0.1" type="number"/></label>
+<label><span>Maximum daily loss (%)</span><input max="100" min="0" name="maxDailyLoss" required="" step="0.1" type="number"/></label>
+<label><span>Maximum trades per day</span><input max="100" min="1" name="maxTradesPerDay" required="" step="1" type="number"/></label>
+<label><span>Default R multiple</span><input max="100" min="0" name="defaultRR" required="" step="0.1" type="number"/></label>
+<label><span>Preferred session</span><select name="preferredSession"><option value="London">London</option><option value="New York">New York</option><option value="Asia">Asia</option><option value="Other">Other</option></select></label>
+</div>
+<div class="backend-note"><strong>Connected to Settings API</strong><p>These values are used by Dashboard, Trades and Calendar calculations/defaults.</p></div>
+<div class="form-actions"><span class="save-state" id="tradingSaveState">Loading defaults…</span><button class="primary-btn" type="submit">Save trading defaults</button></div>
+</form>
+</div>
+<!-- Connections -->
+<div class="settings-view" data-view="connections">
+<div class="view-head">
+<div>
+<h4>Connections</h4>
+<p>Connect brokers and external tools to your trading journal.</p>
+</div>
+<button class="primary-btn" disabled="" id="addConnectionBtn" title="Broker connection backend is not implemented." type="button">＋ Add connection</button>
+</div>
+<div class="connection-grid" id="connectionGrid">
+<article class="connection-card" data-connection="Broker API">
+<div class="connection-logo green-logo">API</div>
+<div class="connection-copy">
+<strong>Broker API</strong>
+<p>Direct broker trade synchronization</p>
+<small>Backend integration required</small>
+</div>
+<button class="connection-menu-btn" disabled="" title="Broker connection backend is not implemented." type="button">⋯</button>
+</article>
+<article class="connection-card" data-connection="MetaTrader 5">
+<div class="connection-logo blue-logo">M5</div>
+<div class="connection-copy">
+<strong>MetaTrader 5</strong>
+<p>Automatic trade import</p>
+<small>Backend integration required</small>
+</div>
+<button class="connect-btn" disabled="" title="Broker connection backend is not implemented." type="button">Connect</button>
+</article>
+<article class="connection-card" data-connection="TradingView">
+<div class="connection-logo purple-logo">TV</div>
+<div class="connection-copy">
+<strong>TradingView</strong>
+<p>Chart screenshots and ideas</p>
+<small>Backend integration required</small>
+</div>
+<button class="connect-btn" disabled="" title="Broker connection backend is not implemented." type="button">Connect</button>
+</article>
+<article class="connection-card" data-connection="Google Drive">
+<div class="connection-logo orange-logo">GD</div>
+<div class="connection-copy">
+<strong>Google Drive</strong>
+<p>Backup reports and screenshots</p>
+<small>Backend integration required</small>
+</div>
+<button class="connect-btn" disabled="" title="Broker connection backend is not implemented." type="button">Connect</button>
+</article>
+</div>
+<div class="connection-note">
+<span>⌾</span>
+<div><strong>Your credentials stay private.</strong><p>The current backend has no broker OAuth/sync routes. These controls are intentionally disabled.</p></div>
+</div>
+</div>
+<!-- Subscription -->
+<div class="settings-view" data-view="subscription">
+<div class="view-head"><div><h4>Subscription &amp; billing</h4><p>No subscription or payment routes exist in the current backend.</p></div><span class="status-pill warning">Not connected</span></div>
+<div class="settings-section"><div class="section-title"><div><h5>Backend required</h5><p>Plans, invoices and payment methods will remain disabled until a billing provider and subscription model are added.</p></div></div><div class="backend-note"><strong>No fake billing data</strong><p>This corrected page does not display demo invoices, card numbers or active paid plans.</p></div></div>
+</div>
+<!-- Security -->
+<div class="settings-view" data-view="security" id="panel-security">
+<div class="view-head">
+<div>
+<h4>Security</h4>
+<p>Protect your account and review active sessions.</p>
+</div>
+<span class="status-pill warning">2FA recommended</span>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Password</h5><p>Use a strong password you do not use elsewhere.</p></div>
+</div>
+<form class="password-form" id="passwordForm">
+<label><span>Current password</span><input name="currentPassword" required="" type="password"/></label>
+<label><span>New password</span><input minlength="8" name="newPassword" required="" type="password"/></label>
+<label><span>Confirm new password</span><input minlength="8" name="confirmPassword" required="" type="password"/></label>
+<button class="secondary-btn" type="submit">Change password</button>
+</form>
+</div>
+<div class="settings-section">
+<div class="section-title">
+<div><h5>Active sessions</h5><p>Devices currently signed in to your ProTrade account.</p></div>
+<button class="text-btn danger-text" id="revokeAllBtn" type="button">Revoke all others</button>
+</div>
+<div class="session-list" id="sessionList"><div class="session-row"><span class="device-icon">▣</span><div><strong>Loading active sessions…</strong><p>Protected session API</p></div></div></div>
+</div>
+</div>
+<!-- Data -->
+<div class="settings-view" data-view="data">
+<div class="view-head">
+<div>
+<h4>Data &amp; privacy</h4>
+<p>Export, import or permanently remove your ProTrade data.</p>
+</div>
+</div>
+<div class="data-action-list">
+<article class="data-action-card">
+<span class="data-icon green-data">⇩</span>
+<div><strong>Export workspace data</strong><p>Download trades, notes and analytics as a JSON archive.</p></div>
+<button class="secondary-btn" id="exportDataBtn" type="button">Export</button>
+</article>
+<article class="data-action-card">
+<span class="data-icon blue-data">⇧</span>
+<div><strong>Import trades</strong><p>Import up to 100 CSV or JSON trade records into MongoDB.</p></div>
+<button class="secondary-btn" id="importDataBtn" type="button">Import</button>
+<input accept=".csv,.json" hidden="" id="importDataInput" type="file"/>
+</article>
+<article class="data-action-card">
+<span class="data-icon purple-data">▧</span>
+<div><strong>Server database backup</strong><p>Backups are controlled by the backend admin scripts, not by a browser toggle.</p></div>
+<label class="mini-toggle large"><input disabled="" id="backupToggle" type="checkbox"/><span></span></label>
+</article>
+<article class="data-action-card"><span class="data-icon orange-data">↺</span><div><strong>Reset workspace settings</strong><p>Restore your Settings document to backend defaults. Trades are not deleted.</p></div><button class="secondary-btn" id="resetSettingsBtn" type="button">Reset</button></article></div>
+<div class="danger-zone">
+<div>
+<h5>Danger zone</h5>
+<p>Deleting the account permanently removes all trades, screenshots, reports and settings.</p>
+</div>
+<button class="danger-btn" id="deleteAccountBtn" type="button">Delete account</button>
+</div>
+</div>
+<!-- Empty search results -->
+<div class="settings-empty" hidden="" id="settingsEmpty">
+<span>⌕</span>
+<h4>No settings found</h4>
+<p>Try searching for profile, theme, notification, broker or security.</p>
+<button class="secondary-btn" id="clearSearchBtn" type="button">Clear search</button>
+</div>
+</section>
+</div>
+</section>
+<!-- Fixed ProTrade Bottom Summary -->
+<footer class="bottom-summary">
+<div class="summary-quote"><i>◇</i><span>Discipline is the bridge between goals and accomplishment.</span></div>
+<div class="summary-stat"><span>Total Trades</span><strong id="footerTotalTrades">—</strong></div>
+<div class="summary-stat"><span>Profitable Trades</span><strong class="positive" id="footerWins">—</strong></div>
+<div class="summary-stat"><span>Losing Trades</span><strong class="negative" id="footerLosses">—</strong></div>
+<div class="summary-stat"><span>Breakeven</span><strong id="footerBreakeven">—</strong></div>
+</footer>
+</main>
+</div>
+<!-- Date range modal -->
+<div class="modal-backdrop" hidden="" id="dateModal">
+<form class="modal-card" id="dateForm">
+<div class="modal-head">
+<div><h3>Select date range</h3><p>Update the fixed ProTrade header period.</p></div>
+<button class="modal-close-btn" data-close-modal="dateModal" type="button">×</button>
+</div>
+<div class="modal-form-grid">
+<label><span>Start date</span><input id="startDate" required="" type="date"/></label>
+<label><span>End date</span><input id="endDate" required="" type="date"/></label>
+</div>
+<div class="modal-actions">
+<button class="secondary-btn" data-close-modal="dateModal" type="button">Cancel</button>
+<button class="primary-btn" type="submit">Apply range</button>
+</div>
+</form>
+</div>
+<!-- New trade modal -->
+<div class="modal-backdrop" hidden="" id="tradeModal">
+<form class="modal-card" id="tradeForm">
+<div class="modal-head"><div><h3>Add trade</h3><p>Save directly to your MongoDB journal.</p></div><button data-close-modal="tradeModal" type="button">×</button></div>
+<div class="form-grid two">
+<label><span>Trade date</span><input name="tradeDate" required="" type="date"/></label>
+<label><span>Symbol</span><input maxlength="30" name="symbol" placeholder="EURUSD" required="" type="text"/></label>
+<label><span>Direction</span><select name="direction"><option value="Long">Long</option><option value="Short">Short</option></select></label>
+<label><span>Session</span><select name="session"><option value="Asian">Asian</option><option value="London">London</option><option value="New York">New York</option><option value="Other">Other</option></select></label>
+<label><span>Entry price</span><input name="entryPrice" required="" step="any" type="number"/></label>
+<label><span>Exit price</span><input name="exitPrice" step="any" type="number"/></label>
+<label><span>Net P&amp;L</span><input name="profitLoss" step="any" type="number" value="0"/></label>
+<label><span>R multiple</span><input name="rr" step="any" type="number" value="0"/></label>
+<label><span>Result</span><select name="result"><option value="Open">Open</option><option value="Win">Win</option><option value="Loss">Loss</option><option value="Breakeven">Breakeven</option></select></label>
+<label><span>Quantity</span><input min="0" name="quantity" step="any" type="number" value="1"/></label>
+<label><span>Strategy / model</span><input maxlength="120" name="model"/></label>
+<label><span>Protocol</span><input maxlength="120" name="protocol"/></label>
+<label class="form-wide"><span>Notes</span><textarea maxlength="5000" name="notes" rows="3"></textarea></label>
+</div>
+<div class="modal-actions"><button class="secondary-btn" data-close-modal="tradeModal" type="button">Cancel</button><button class="primary-btn" type="submit">Save to MongoDB</button></div>
+</form>
+</div>
+<!-- Connection modal -->
+<div class="modal-backdrop" hidden="" id="connectionModal">
+<form class="modal-card" id="connectionForm">
+<div class="modal-head">
+<div><h3>Add connection</h3><p>Connect a broker or external trading service.</p></div>
+<button class="modal-close-btn" data-close-modal="connectionModal" type="button">×</button>
+</div>
+<div class="modal-form-grid one">
+<label>
+<span>Provider</span>
+<select name="provider">
+<option>MetaTrader 5</option>
+<option>TradingView</option>
+<option>Google Drive</option>
+<option>cTrader</option>
+</select>
+</label>
+<label><span>Connection name</span><input name="connectionName" required="" value="Primary Connection"/></label>
+</div>
+<div class="connection-auth-note">You will be redirected to the provider's secure authorization screen.</div>
+<div class="modal-actions">
+<button class="secondary-btn" data-close-modal="connectionModal" type="button">Cancel</button>
+<button class="primary-btn" type="submit">Continue securely</button>
+</div>
+</form>
+</div>
+<!-- Delete account modal -->
+<div class="modal-backdrop" hidden="" id="deleteModal">
+<form class="modal-card compact-modal" id="deleteForm">
+<div class="modal-head"><div><h3>Delete account permanently</h3><p>This removes the account, trades, journals, settings and sessions.</p></div><button data-close-modal="deleteModal" type="button">×</button></div>
+<label><span>Current account email</span><input id="deleteEmailInput" required="" type="email"/></label>
+<label><span>Current password</span><input autocomplete="current-password" id="deletePasswordInput" placeholder="Required for password accounts" type="password"/></label>
+<label><span>Type DELETE</span><input autocomplete="off" id="deleteConfirmInput" required="" type="text"/></label>
+<div class="modal-actions"><button class="secondary-btn" data-close-modal="deleteModal" type="button">Cancel</button><button class="danger-btn" disabled="" id="confirmDeleteBtn" type="submit">Delete permanently</button></div>
+</form>
+</div>
+<!-- Information modal -->
+<div class="modal-backdrop" hidden="" id="infoModal">
+<div class="modal-card compact-modal">
+<div class="modal-head">
+<div><h3 id="infoModalTitle">Information</h3><p id="infoModalSubtitle">ProTrade settings</p></div>
+<button class="modal-close-btn" data-close-modal="infoModal" type="button">×</button>
+</div>
+<div class="info-modal-body" id="infoModalBody"></div>
+<div class="modal-actions">
+<button class="primary-btn" data-close-modal="infoModal" type="button">Done</button>
+</div>
+</div>
+</div>
+<div class="theme-transition-flash" id="themeTransitionFlash"></div>
+<div class="toast-stack" id="toastStack"></div>
+<script src="auth.js"></script><script src="settings.js"></script><script src="security-activity.js"></script><script src="security-alerts.js"></script><script src="new-trade-modal.js"></script><script src="protrade-shell.js"></script><script src="app-loader.js"></script></body>
+</html>
