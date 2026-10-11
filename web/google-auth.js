@@ -389,13 +389,32 @@
   };
 
   const renderGoogleButton = () => {
-    // Google Identity Services popup in embedded Android WebViews is not supported.
-    // Use existing email/password authentication until native OAuth is implemented.
+    // Google Identity Services is blocked inside WebViews, use a native account picker.
     if (window.ProTraderMobile?.isNative) {
-      const wrapper = document.getElementById('googleButtonWrapper');
-      if (wrapper) {
-        wrapper.innerHTML = '<p style="color:#9da8af;text-align:center;font-size:13px;line-height:1.5">Google sign-in is available on the website. For this Android beta, sign in with your ProTrader email and password.</p>';
-      }
+      const container = document.getElementById('googleSignInButton');
+      const status = document.getElementById('googleStatus');
+      if (!container) return;
+      container.textContent = '';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.textContent = 'Continue with Google';
+      button.setAttribute('aria-label','Continue with Google using native Android sign-in');
+      button.style.cssText = 'min-height:48px;width:100%;color:#101827;background:#fff;border:1px solid #bac7d5;border-radius:22px;font-weight:800;font-size:15px;cursor:pointer';
+      container.appendChild(button);
+      if(status) status.textContent = 'Requires Android Google Sign-In setup for this APK.';
+      button.addEventListener('click', async () => {
+        if(typeof window.ProTraderNativeGoogleSignIn !== 'function') {
+          showError('Native Google Sign-In is not installed in this build. Use email/password or reset your password.');
+          return;
+        }
+        button.disabled = true;
+        try {
+          const credential = await window.ProTraderNativeGoogleSignIn();
+          await handleGoogleCredential({ credential });
+        } catch (error) {
+          showError(error.message || 'Google Sign-In could not start. Check Android OAuth app SHA-1 configuration.');
+        } finally { button.disabled = false; }
+      });
       return;
     }
     const clientId = String(

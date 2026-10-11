@@ -375,11 +375,11 @@
               body.code === "EMAIL_NOT_VERIFIED" ||
               body.code === "VERIFICATION_EMAIL_FAILED"
             ) {
-              window.location.replace(
-                `verify-email.html?status=resend&email=${encodeURIComponent(
-                  body.email || email
-                )}`
-              );
+              if (window.ProTraderMobile?.isNative && window.ProTraderMobileAuth) {
+                window.ProTraderMobileAuth.showVerify({email:body.email || email});
+              } else {
+                window.location.replace(`verify-email.html?status=resend&email=${encodeURIComponent(body.email || email)}`);
+              }
               return;
             }
 
@@ -389,11 +389,11 @@
           const verificationEmail =
             body.email || email;
 
-          window.location.replace(
-            `verify-email.html?status=sent&email=${encodeURIComponent(
-              verificationEmail
-            )}`
-          );
+          if (window.ProTraderMobile?.isNative && window.ProTraderMobileAuth) {
+            window.ProTraderMobileAuth.showVerify({email:verificationEmail, alreadySent:true});
+          } else {
+            window.location.replace(`verify-email.html?status=sent&email=${encodeURIComponent(verificationEmail)}`);
+          }
         } catch (error) {
           showError(error.message || "Could not connect to ProTrade.");
         } finally {

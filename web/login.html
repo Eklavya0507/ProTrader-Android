@@ -368,11 +368,11 @@
               const verificationEmail = body.email || email;
               saveVerificationSession(verificationEmail);
 
-              window.location.replace(
-                `verify-email.html?status=resend&email=${encodeURIComponent(
-                  verificationEmail
-                )}`
-              );
+              if (window.ProTraderMobile?.isNative && window.ProTraderMobileAuth) {
+                window.ProTraderMobileAuth.showVerify({email: verificationEmail});
+              } else {
+                window.location.replace(`verify-email.html?status=resend&email=${encodeURIComponent(verificationEmail)}`);
+              }
               return;
             }
 

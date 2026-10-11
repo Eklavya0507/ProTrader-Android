@@ -24,14 +24,27 @@ function copyTree(from, to) {
 }
 copyTree(source,output);
 
+// Bundle native Google credentials picker into an Android WebView-safe browser script.
+// Plugin is only used for account chooser; backend still verifies the signed Google ID token.
+require('esbuild').buildSync({
+  entryPoints:[path.join(root,'native-src','native-google.js')],
+  outfile:path.join(output,'mobile-google-native.js'),
+  bundle:true,platform:'browser',format:'iife',target:'es2020',minify:true
+});
+
 // Add Android-only style / connection gate to all HTML files, preserving original page scripts and UI.
 for (const file of fs.readdirSync(output).filter(x => x.endsWith('.html'))) {
   const filePath = path.join(output,file);
   let html = fs.readFileSync(filePath,'utf8');
   if (/<head\b[^>]*>/i.test(html)) {
-    html = html.replace(/<head\b[^>]*>/i,(tag) => `${tag}\n<link rel="stylesheet" href="mobile-app.css"/>\n<script defer src="mobile-app.js"></script>`);
+    html = html.replace(/<head\b[^>]*>/i,(tag) => `${tag}\n<link rel="stylesheet" href="mobile-app.css"/>\n<script defer src="mobile-app.js"></script>\n<link rel="stylesheet" href="mobile-auth-recovery.css"/>\n<script defer src="mobile-auth-recovery.js"></script>`);
   } else {
     html = `<link rel="stylesheet" href="mobile-app.css"/><script defer src="mobile-app.js"></script>\n` + html;
+  }
+  // Install native Google sign-in module before original google-auth.js.
+  if (['login.html','register.html'].includes(file)) {
+    html = html.replace(/<script[^>]+src=["']google-auth\.js[^"']*["'][^>]*><\/script>/i,
+      (tag) => `<script defer src="mobile-google-native.js"></script>\n${tag}`);
   }
   // Native WebView does not support Google One Tap sign-in.
   if (['login.html','register.html'].includes(file)) {
